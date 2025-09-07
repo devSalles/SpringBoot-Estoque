@@ -1,7 +1,6 @@
 package Estoque_CRUD.controller;
 
-import Estoque_CRUD.dto.ProdutoDTO;
-import Estoque_CRUD.model.ProdutoModel;
+import Estoque_CRUD.model.Produto;
 import Estoque_CRUD.repository.ProdutoRepository;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
@@ -26,7 +25,7 @@ public class PutProduto {
     public ResponseEntity<Object> atualizarId(@PathVariable Long id, @RequestBody @Valid ProdutoDTO Prod)
     {
 
-        Optional<ProdutoModel> produto=this.produto.findById(id);
+        Optional<Produto> produto=this.produto.findById(id);
         if(produto.isEmpty())
         {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado");

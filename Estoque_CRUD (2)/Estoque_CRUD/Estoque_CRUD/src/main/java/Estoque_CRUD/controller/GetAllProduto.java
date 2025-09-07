@@ -1,6 +1,6 @@
 package Estoque_CRUD.controller;
 
-import Estoque_CRUD.model.ProdutoModel;
+import Estoque_CRUD.model.Produto;
 import Estoque_CRUD.repository.ProdutoRepository;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class GetAllProduto {
     @ApiResponse(responseCode = "404", description = "quando a lista esta vazia")
     public ResponseEntity<Object> listar()
     {
-        List<ProdutoModel> produto=this.produto.findAll();
+        List<Produto> produto=this.produto.findAll();
         if(produto.isEmpty())
         {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Lista vazia");

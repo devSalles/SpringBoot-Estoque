@@ -1,7 +1,6 @@
 package Estoque_CRUD.controller;
 
-import Estoque_CRUD.dto.ProdutoDTO;
-import Estoque_CRUD.model.ProdutoModel;
+import Estoque_CRUD.model.Produto;
 import Estoque_CRUD.repository.ProdutoRepository;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
@@ -26,7 +25,7 @@ public class PostProduto {
     @ApiResponse(responseCode = "400",description = "Quando algum dos campo e nulo")
     public ResponseEntity<Object> criar(@RequestBody @Valid ProdutoDTO produtoDTO)
     {
-        var Produto = new ProdutoModel();
+        var Produto = new Produto();
         BeanUtils.copyProperties(produtoDTO,Produto);
         this.produto.save(Produto);
         return ResponseEntity.status(HttpStatus.CREATED).body("Produto criado");

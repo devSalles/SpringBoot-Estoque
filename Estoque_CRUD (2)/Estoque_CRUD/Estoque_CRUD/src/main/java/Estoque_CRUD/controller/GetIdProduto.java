@@ -1,6 +1,6 @@
 package Estoque_CRUD.controller;
 
-import Estoque_CRUD.model.ProdutoModel;
+import Estoque_CRUD.model.Produto;
 import Estoque_CRUD.repository.ProdutoRepository;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class GetIdProduto {
     @ApiResponse(responseCode = "404", description = "quando não econtrado o ID")
     public ResponseEntity<Object> listarID(@PathVariable Long id)
     {
-        Optional<ProdutoModel> produto=this.produto.findById(id);
+        Optional<Produto> produto=this.produto.findById(id);
         if(produto.isEmpty())
         {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado");
