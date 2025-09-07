@@ -15,10 +15,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ProdutoRequestDTO {
 
-    @NotNull(message = "Nome produto invalido") @NotBlank(message = "Nome produto invalido")
+    @NotNull(message = "Nome obrigatório") @NotBlank(message = "Nome obrigatório")
     private String name;
 
-    @Min(value = 0,message = "Valor deve ser positivo ou maior que 0")
+    @Min(value = 1,message = "Valor deve ser positivo ou maior que 0")
     private Double preco;
 
     public Produto toProduto()
