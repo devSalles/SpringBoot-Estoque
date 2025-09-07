@@ -8,8 +8,6 @@ import Estoque_CRUD.model.Produto;
 import Estoque_CRUD.repository.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import javax.print.attribute.standard.OrientationRequested;
 import java.util.List;
 
 @Service

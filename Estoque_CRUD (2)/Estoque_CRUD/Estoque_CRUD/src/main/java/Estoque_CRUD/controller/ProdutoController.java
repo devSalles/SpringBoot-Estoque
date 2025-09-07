@@ -2,15 +2,9 @@ package Estoque_CRUD.controller;
 
 import Estoque_CRUD.dto.ProdutoRequestDTO;
 import Estoque_CRUD.dto.ProdutoResponseDTO;
-import Estoque_CRUD.model.Produto;
-import Estoque_CRUD.repository.ProdutoRepository;
 import Estoque_CRUD.service.ProdutoService;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
