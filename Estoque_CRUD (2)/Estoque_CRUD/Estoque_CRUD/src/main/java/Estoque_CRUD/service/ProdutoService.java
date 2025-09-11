@@ -16,6 +16,10 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ProdutoService {
+
+    //Quantidade maxima do estoque
+    private static final int const_quantMax=5000;
+
     private final ProdutoRepository produtoRepository;
 
 
@@ -65,7 +69,13 @@ public class ProdutoService {
         this.produtoRepository.deleteAll();
     }
 
-    //Metodo para aumentar de quantidade de produto no estoque
+    //Metodo para fazer soma total do estoque
+    public Integer getTotalStock()
+    {
+        return this.produtoRepository.findAll().stream().mapToInt(Produto::getQuant_prod).sum();
+    }
+
+    //Metodo para entrada de quantidade de produto no estoque
     public Produto inputProd(Long id, Integer quant)
     {
         if(quant==null || quant<=0)
@@ -75,7 +85,9 @@ public class ProdutoService {
 
         Produto produto=this.produtoRepository.findById(id).orElseThrow(IdNotFoundException::new);
 
-        if(produto.getQuant_prod()+quant>produto.getQuantMax())
+        Integer estoqueTotal=getTotalStock();
+
+        if(estoqueTotal+quant>const_quantMax)
         {
             throw new StockOverFlowException();
         }
@@ -84,7 +96,7 @@ public class ProdutoService {
         return this.produtoRepository.save(produto);
     }
 
-    //Metodo para diminuir quantidade de produto no estoque
+    //Metodo para saída de quantidade de produto no estoque
     public Produto outputProd(Long id , Integer quant)
     {
         if(quant==null || quant<=0)

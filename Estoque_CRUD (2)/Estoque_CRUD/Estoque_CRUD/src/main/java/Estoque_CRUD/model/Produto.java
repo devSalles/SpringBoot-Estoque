@@ -17,8 +17,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Produto {
 
-    //Quantidade maxima do estoque
-    private static final int const_quantMax=5000;
+
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -37,6 +36,4 @@ public class Produto {
     @Column(nullable = false)
     private Integer quant_prod;
 
-    @Transient
-    private Integer quantMax=const_quantMax;
 }
