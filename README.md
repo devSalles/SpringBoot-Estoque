@@ -1,9 +1,9 @@
 📦 SpringBoot-Estoque
 
 Sistema de gestão de estoque desenvolvido em Spring Boot com integração ao MySQL.
-O projeto implementa um CRUD completo (criar, listar, atualizar e remover produtos), seguindo boas práticas de APIs RESTful e persistência de dados.
+O projeto implementa um CRUD completo (criar, listar, atualizar e remover produtos) e um controle inteligente de estoque, respeitando um limite máximo global de 5000 unidades.
 
-✨ Funcionalidades
+✨ Funcionalidades:
 
 📌 Cadastro de produtos
 
@@ -15,7 +15,13 @@ O projeto implementa um CRUD completo (criar, listar, atualizar e remover produt
 
 🗑️ Remoção de produtos individuais ou em lote
 
-🚀 Tecnologias Utilizadas
+📊 Consulta do estoque total
+
+📥 Entrada de produtos no estoque com validação de limite máximo
+
+📤 Saída de produtos no estoque com validação de quantidade disponível
+
+🚀 Tecnologias Utilizadas:
 
 Java 17+
 
@@ -27,9 +33,9 @@ Maven
 
 Hibernate (ORM)
 
-📂 Estrutura de Endpoints
+Swagger para testes
 
-Método	Endpoint	Descrição
+📂 Estrutura de Endpoints:
 
 GET	/produto/showAll	- Lista todos os produtos
 
@@ -42,3 +48,19 @@ PUT	/produto/edit/{id}	- Atualiza informações de um produto
 DELETE	/produto/delete/{id}	- Remove um produto por ID
 
 DELETE	/produto/deleteAll	- Remove todos os produtos
+
+⚙️ Regras de Negócio:
+
+🔒 O estoque total não pode ultrapassar 5000 unidades
+
+❌ Não é permitido adicionar ou retirar quantidades nulas ou negativas
+
+⚠️ Não é permitido retirar mais do que a quantidade disponível do produto
+
+🛑 Caso uma regra seja violada, são lançadas exceções específicas:
+
+IdNotFoundException → Produto não encontrado
+
+StockOverFlowException → Quantidade excede o limite de 5000 unidades
+
+InsufficientStockException → Estoque insuficiente para retirada
